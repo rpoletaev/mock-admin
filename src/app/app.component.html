@@ -1,0 +1,10 @@
+<mat-toolbar color='primary'>
+  <a mat-button routerLink="/">Home</a>
+  <span class="spacer"></span>
+  <a mat-button *ngIf="!isMockActivated" (click)="activate()">Activate</a>
+  <a mat-button (click)="logout()">Logout</a>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,37 @@
+  <mat-toolbar>
+    <h4 class="mock-header">Список возвращаемых результатов</h4>
+    <span width="50px"></span>
+    <button mat-icon-button class="examble-icon" (click)=addResult() color="primary" aria-label="Add new result">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button class="examble-icon" (click)=saveResults() color="primary" aria-label="Save results">
+      <mat-icon>save</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <mat-card class="card-list-item" *ngFor="let res of results">
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Заказ</mat-label>
+      <input matInput type="number" placeholder="Код" [(ngModel)]="res.documentId">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Статус</mat-label>
+      <mat-select [(ngModel)]="res.statusCode" name="resultStatus" (selectionChange)="statusChanged($event)">
+        <mat-option *ngFor="let status of statuses" [value]="status.code">
+          {{status.caption}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Дата изменения статуса</mat-label>
+      <input matInput type="datetime-local" placeholder="Дата события" [(ngModel)]="res.dateChange">
+    </mat-form-field>
+
+    <button mat-icon-button color="warn" aria-label="Remove result" (click)="delete(res.documentId)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card>
+
